@@ -18,14 +18,14 @@ ARG VITE_BASE_PATH=/
 ENV VITE_BASE_PATH=${VITE_BASE_PATH}
 
 # Build the application
-RUN npm run build
+# Force output to 'dist' to ensure standard behavior for container
+RUN npm run build -- --outDir dist
 
 # Production Stage
 FROM nginx:alpine
 
 # Copy the build output from the previous stage
-# Note: vite.config.js is configured to output to 'docs'
-COPY --from=build /app/docs /usr/share/nginx/html
+COPY --from=build /app/dist /usr/share/nginx/html
 
 # Copy custom nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
