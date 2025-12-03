@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="sv">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/Foldable-partition/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vikvägg Kalkylator</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #242424;
+      font-family: 'Inter', sans-serif;
+    }
+
+    #app {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #ui-panel {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(30, 30, 30, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 15px;
+      border-radius: 12px;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 200px;
+      max-height: 90vh;
+      overflow-y: auto;
+      font-size: 0.8rem;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    .input-group {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.75rem;
+      margin-bottom: 4px;
+      color: #aaa;
+    }
+
+    input {
+      width: 100%;
+      padding: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 0.9rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 8px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 8px;
+      font-size: 0.8rem;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    #results {
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      font-size: 0.8rem;
+    }
+
+    .result-val {
+      font-weight: bold;
+    }
+  </style>
+  <script type="module" crossorigin src="/Foldable-partition/assets/index-BJusawkp.js"></script>
+  <link rel="stylesheet" crossorigin href="/Foldable-partition/assets/index-Cp7nOaxQ.css">
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <div id="ui-panel">
+    <h2>Vikvägg Kontroll v1.1</h2>
+
+    <div class="input-group">
+      <label for="totalLength">Total Längd (mm)</label>
+      <input type="number" id="totalLength" value="2000">
+    </div>
+
+    <div class="input-group">
+      <label for="height">Höjd (mm)</label>
+      <input type="number" id="height" value="2500">
+    </div>
+
+    <div class="input-group">
+      <label for="sections">Antal Sektioner</label>
+      <input type="number" id="sections" value="2" min="1" max="10">
+    </div>
+
+    <div class="input-group">
+      <label for="wallColor">Färg</label>
+      <input type="color" id="wallColor" value="#eeeeee">
+    </div>
+
+    <button id="updateBtn">Beräkna & Uppdatera</button>
+
+    <div style="margin-top: 10px; display: flex; gap: 5px;">
+      <button id="foldFrontBtn" style="flex: 1; background: #2196F3;">Vik Fram</button>
+      <button id="unfoldBtn" style="flex: 1; background: #4CAF50;">Veckla ut</button>
+      <button id="foldBackBtn" style="flex: 1; background: #2196F3;">Vik Bak</button>
+    </div>
+
+    <div style="margin-top: 15px; display: flex; gap: 5px; flex-wrap: wrap;">
+      <button id="viewFront" style="flex: 1; font-size: 0.8rem; background: #555;">Fram</button>
+      <button id="viewTop" style="flex: 1; font-size: 0.8rem; background: #555;">Upp</button>
+      <button id="viewSide" style="flex: 1; font-size: 0.8rem; background: #555;">Sida</button>
+      <button id="toggleCamera" style="flex: 1 1 100%; font-size: 0.8rem; background: #777; margin-top: 5px;">Perspektiv
+        / Orto</button>
+    </div>
+
+    <div id="results">
+      <div class="result-row">
+        <span>Standardbredd:</span>
+        <span id="res-std-width" class="result-val">-</span>
+      </div>
+      <div class="result-row">
+        <span>Första sektion:</span>
+        <span id="res-first-width" class="result-val">-</span>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
